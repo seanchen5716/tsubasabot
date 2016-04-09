@@ -111,7 +111,7 @@ EOM;
     }
 $content = <<< EOM
         "contentType":1,
-        "text":"なになに、「{$text}」って、どういうことでしょうか？"
+        "text":"なになに、「{$text}」って、どういうことなの？"
 EOM;
 }
 $post = <<< EOM
