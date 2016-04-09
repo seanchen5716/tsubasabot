@@ -148,6 +148,11 @@ function api_post_request($path, $post) {
     $output = curl_exec($curl);
     error_log($output);
     echo "<br>《".$output."》";
+
+    if(curl_errno($ch))
+{
+    echo 'Curl error: ' . curl_error($ch);
+}
 }
 
 function api_get_user_profile_request($mid) {
