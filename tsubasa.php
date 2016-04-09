@@ -147,7 +147,7 @@ function api_post_request($path, $post) {
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $output = curl_exec($curl);
     error_log($output);
-    echo "<br>".$output;
+    echo "<br>《".$output."》";
 }
 
 function api_get_user_profile_request($mid) {
@@ -163,7 +163,7 @@ function api_get_user_profile_request($mid) {
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $output = curl_exec($curl);
     error_log($output);
-    echo "<br>".$output;
+    echo "<br>《".$output."》";
 }
 
 function api_get_message_content_request($message_id) {
