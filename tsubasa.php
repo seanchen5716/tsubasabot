@@ -149,9 +149,9 @@ function api_post_request($path, $post) {
     error_log($output);
     echo "<br>《".$output."》";
 
-    if(curl_errno($ch))
+    if(curl_errno($curl ))
 {
-    echo 'Curl error: ' . curl_error($ch);
+    echo 'Curl error: ' . curl_error($curl );
 }
 }
 
