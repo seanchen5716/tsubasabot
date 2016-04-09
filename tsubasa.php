@@ -165,7 +165,7 @@ function api_get_user_profile_request($mid) {
     );
 
     $curl = curl_init($url);
-    //curl_setopt($curl,, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $output = curl_exec($curl);
@@ -182,7 +182,7 @@ function api_get_message_content_request($message_id) {
     );
 
     $curl = curl_init($url);
-    //curl_setopt($curl,, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $output = curl_exec($curl);
