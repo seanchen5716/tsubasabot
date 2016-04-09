@@ -141,7 +141,7 @@ function api_post_request($path, $post) {
     );
 
     $curl = curl_init($url);
-    //curl_setopt($curl,, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($curl,, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_setopt($curl, CURLOPT_POST, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($curl, CURLOPT_POSTFIELDS, $post);
