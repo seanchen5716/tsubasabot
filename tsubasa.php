@@ -8,8 +8,8 @@ $channel_secret = "bd98cbb48d7458d7cc3d464ecb924805";
 $mid = "uc8ced9e8141d7cca1ef6ea6c9fb51230";
 
 // リソースURL設定
-$original_content_url_for_image = "[https://tsubasabot.azurewebsites.net/5248.jpg]";
-$preview_image_url_for_image = "[http://ks.c.yimg.jp/res/chie-que-12157/12/157/716/472/i320]";
+$original_content_url_for_image = "https://tsubasabot.azurewebsites.net/5248.jpg";
+$preview_image_url_for_image = "https://tsubasabot.azurewebsites.net/5248.jpg";
 $original_content_url_for_video = "[https://www.youtube.com/watch?v=R1gOcj_rFcU]";
 $preview_image_url_for_video = "[https://yt3.ggpht.com/-u1m1s3j34kw/AAAAAAAAAAI/AAAAAAAAAAA/kxxnX3pl5Ig/s88-c-k-no-rj-c0xffffff/photo.jpg]";
 $original_content_url_for_audio = "[音声URL]";
