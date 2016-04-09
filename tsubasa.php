@@ -139,9 +139,10 @@ function api_post_request($path, $post) {
         "X-Line-ChannelSecret: {$GLOBALS['channel_secret']}",
         "X-Line-Trusted-User-With-ACL: {$GLOBALS['mid']}"
     );
-    curl_setopt($curl , CURLOPT_CAINFO, getenv('ProgramFiles(x86)') . '\Git\bin\curl-ca-bundle.crt');
+
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl,, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($curl, CURLOPT_POSTFIELDS, $post);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -162,8 +163,9 @@ function api_get_user_profile_request($mid) {
         "X-Line-ChannelSecret: {$GLOBALS['channel_secret']}",
         "X-Line-Trusted-User-With-ACL: {$GLOBALS['mid']}"
     );
-    curl_setopt($curl , CURLOPT_CAINFO, getenv('ProgramFiles(x86)') . '\Git\bin\curl-ca-bundle.crt');
+
     $curl = curl_init($url);
+    curl_setopt($curl,, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $output = curl_exec($curl);
@@ -178,8 +180,9 @@ function api_get_message_content_request($message_id) {
         "X-Line-ChannelSecret: {$GLOBALS['channel_secret']}",
         "X-Line-Trusted-User-With-ACL: {$GLOBALS['mid']}"
     );
-    curl_setopt($curl , CURLOPT_CAINFO, getenv('ProgramFiles(x86)') . '\Git\bin\curl-ca-bundle.crt');
+
     $curl = curl_init($url);
+    curl_setopt($curl,, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $output = curl_exec($curl);
