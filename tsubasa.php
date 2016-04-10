@@ -26,7 +26,7 @@ $message_id = $content->id;
 $content_type = $content->contentType;
 
 // 天気情報を取得
-$base_url = "http://weather.livedoor.com/forecast/webservice/json/v1?city=013010";
+$base_url = "http://weather.livedoor.com/forecast/webservice/json/v1?city=130010";
 $json = file_get_contents($base_url);
 $json = mb_convert_encoding($json, 'UTF-8');
 $obj = json_decode($json, true);
