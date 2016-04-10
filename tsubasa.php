@@ -42,7 +42,7 @@ $weather_content = <<< EOM
       "text":"東京の天気は「{$weather_desc}」らしい。今の気温は「{$weather_temp}」らしい。最高気温は「{$weather_temp_max}」らしい。最低気温は「{$weather_temp_min}」らしい。"
 EOM;
 
-$weather .= '東京の天気は「' . $data->weather[0]->description  . '」らしい。';
+$weather .= '東京の天気は「' . $weather_desc  . '」らしい。';
 $weather.= '最高気温は「' . $data->main->temp_max  . '」らしい。最低気温は「' . $data->main->temp_min  . '」らしい。';
 $weather .= '今の気温は「' . $data->main->temp  . '」らしい。';
 echo $weather;
