@@ -104,7 +104,7 @@ $content = <<< EOM
         {{$location_content}},
         {{$rich_content}}
     ]
-EOM;
+EOM;/*
 }else if($text == "天気"){
   $weather = get_weather_on(130010);
 if (strops($weather->forecasts[0]->telop, '雨') !== false) {
@@ -117,7 +117,7 @@ if (strops($weather->forecasts[0]->telop, '雨') !== false) {
     "contentType":1,
     "text" ="【東京都】傘がないです"
     EOM;
-}
+}*/
 } else { // 上記以外はtext送信
     if ($content_type != 1) {
         $text = "テキスト以外";
