@@ -110,7 +110,7 @@ EOM;
         $text = "テキスト以外";
     }
 $weather = get_weather_on(130010);
-
+echo "tenki".$weather;
 
 $content = <<< EOM
         "contentType":1,
