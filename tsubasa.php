@@ -39,7 +39,7 @@ $weather_desc = $weather_desc_list["{$weather_desc}"];
 
 $weather_content = <<< EOM
       "contentType":1,
-      "text":"東京の天気は「{$weather_desc}」らしい。今の気温は「{$weather_temp}」らしい。最高気温は「{$weather_temp_max}」らしい。最低気温は「{$weather_temp_min}」らしい。"
+      "text":"東京の天気は「{$weather_desc}度」、今の気温は「{$weather_temp}度」、最高気温は「{$weather_temp_max}度」、最低気温は「{$weather_temp_min}」だよ。"
 EOM;
 
 $weather .= '東京の天気は「' . $weather_desc  . '」らしい。';
