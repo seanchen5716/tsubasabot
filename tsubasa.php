@@ -14,6 +14,7 @@ $original_content_url_for_video = "[https://www.youtube.com/watch?v=R1gOcj_rFcU]
 $preview_image_url_for_video = "[https://yt3.ggpht.com/-u1m1s3j34kw/AAAAAAAAAAI/AAAAAAAAAAA/kxxnX3pl5Ig/s88-c-k-no-rj-c0xffffff/photo.jpg]";
 $original_content_url_for_audio = "[音声URL]";
 $download_url_for_rich = "[リッチ画像URL]";
+$weather = json_deocde(file_get_contents('http://weather.livedoor.com/forecast/webservice/json/v1?city=130010'));
 
 // メッセージ受信
 $json_string = file_get_contents('php://input');
@@ -109,7 +110,7 @@ EOM;
     if ($content_type != 1) {
         $text = "テキスト以外";
     }
-    $weather = json_deocde(file_get_contents('http://weather.livedoor.com/forecast/webservice/json/v1?city=130010'));
+
 
 
 $content = <<< EOM
