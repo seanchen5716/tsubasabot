@@ -30,8 +30,8 @@ $base_url = "http://weather.livedoor.com/forecast/webservice/json/v1?city=130010
 $json = file_get_contents($base_url);
 $json = mb_convert_encoding($json, 'UTF-8');
 $obj = json_decode($json, true);
-if (strops($weather->forecasts[0]->telop, '晴') !== false) {
- echo "【東京都】傘が必要なさそうです"; 
+if (strops($obj->forecasts[0]->telop, '晴') !== false) {
+ echo "【東京都】傘が必要なさそうです";
 }
 
 
