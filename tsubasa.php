@@ -112,11 +112,6 @@ EOM;
         "contentType":1,
         "text":"【東京都】傘が必要です"
         EOM;
-    }else{
-      $content=<<< EOM
-        "contentType":1,
-        "text":"【東京都】傘がないです"
-        EOM;
     }
 } else { // 上記以外はtext送信
     if ($content_type != 1) {
