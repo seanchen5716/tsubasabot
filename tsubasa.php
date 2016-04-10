@@ -76,10 +76,6 @@ $rich_content = <<< EOM
             "MARKUP_JSON": "{\"canvas\":{\"width\": 1040, \"height\": 1040, \"initialScene\": \"scene1\"},\"images\":{\"image1\": {\"x\": 0, \"y\": 0, \"w\": 1040, \"h\": 1040}},\"actions\": {\"link1\": {\"type\": \"web\",\"text\": \"Open link1.\",\"params\": {\"linkUri\": \"http://line.me/\"}},\"link2\": {\"type\": \"web\",\"text\": \"Open link2.\",\"params\": {\"linkUri\": \"http://linecorp.com\"}}},\"scenes\":{\"scene1\": {\"draws\": [{\"image\": \"image1\", \"x\": 0, \"y\": 0, \"w\": 1040, \"h\": 1040}],\"listeners\": [{\"type\": \"touch\", \"params\": [0, 0, 1040, 720], \"action\": \"link1\"}, {\"type\": \"touch\", \"params\": [0, 720, 1040, 720], \"action\": \"link2\"}]}}}"
         }
 EOM;
-$weather = <<< EOM
-  "contentType":1,
-  "text":"【東京都】傘が必要です"
-  EOM;
 
 // 受信メッセージに応じて返すメッセージを変更
 $event_type = "138311608800106203";
@@ -109,19 +105,22 @@ $content = <<< EOM
         {{$rich_content}}
     ]
 EOM;
-}else if($text == "天気"){
-  $weather = get_weather_on(130010);
-    if (strops($weather->forecasts[0]->telop, '雨') !== false) {
-      $content=$weather;
-    }
 } else { // 上記以外はtext送信
     if ($content_type != 1) {
         $text = "テキスト以外";
     }
+    $weather = get_weather_on(130010);
+
+      if (strops($weather->forecasts[0]->telop, '雨') !== false) {
+        $content=<<< EOM
+          "contentType":1,
+          "text":"【東京都】傘が必要です"
+          EOM;
+      }else{
 $content = <<< EOM
         "contentType":1,
         "text":"なになに、「{$text}」って、どういうことなの？"
-EOM;
+EOM;}
 }
 $post = <<< EOM
 {
