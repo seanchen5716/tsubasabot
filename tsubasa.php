@@ -26,7 +26,7 @@ $message_id = $content->id;
 $content_type = $content->contentType;
 
 // 天気情報を取得
-$json_data = file_get_contents('http://api.openweathermap.org/data/2.5/weather?lat=33.593505&lon=130.400995');
+$json_data = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Tokyo&APPID=3239915d4dc6061371ef340d59722e6f');
 $data = json_decode($json_data);
 
 $text .= '\r\n|なお天気は「' . $data->weather[0]->description  . '」らしいです。';
