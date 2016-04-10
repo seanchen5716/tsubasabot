@@ -30,7 +30,7 @@ $json_data = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q
 $data = json_decode($json_data);
 
 $text .= '東京の天気は「' . $data->weather[0]->description  . '」らしいよ。';
-$text .= '最高気温は「' . $data->main[0]->temp_max  . '」らしいよ。';
+$text .= '最高気温は「' . $data->main->temp_max  . '」らしいよ。';
 echo $text;
 
 // ユーザ情報取得
