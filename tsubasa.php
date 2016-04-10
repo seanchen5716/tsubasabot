@@ -110,12 +110,12 @@ EOM;
     if (strops($weather->forecasts[0]->telop, '雨') !== false) {
       $content=<<< EOM
         "contentType":1,
-        "text" ="【東京都】傘が必要です"
+        "text":"【東京都】傘が必要です"
         EOM;
     }else{
       $content=<<< EOM
         "contentType":1,
-        "text" ="【東京都】傘がないです"
+        "text":"【東京都】傘がないです"
         EOM;
     }
 } else { // 上記以外はtext送信
