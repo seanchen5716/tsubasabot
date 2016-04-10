@@ -35,12 +35,12 @@ $weather_temp_min = $data->main->temp_min;
 
 $weather_content = <<< EOM
       "contentType":1,
-      "text":"東京の天気は「{$weather_desc}」らしいよ。今の気温は「{$weather_temp}」らしいよ。最高気温は「{$weather_temp_max}」らしいよ。最低気温は「{$weather_temp_min}」らしいよ。"
+      "text":"東京の天気は「{$weather_desc}」らしい。今の気温は「{$weather_temp}」らしい。最高気温は「{$weather_temp_max}」らしい。最低気温は「{$weather_temp_min}」らしい。"
 EOM;
 
-$weather .= '東京の天気は「' . $data->weather[0]->description  . '」らしいよ。';
-$weather.= '最高気温は「' . $data->main->temp_max  . '」らしいよ。最低気温は「' . $data->main->temp_min  . '」らしいよ。';
-$weather .= '今の気温は「' . $data->main->temp  . '」らしいよ。';
+$weather .= '東京の天気は「' . $data->weather[0]->description  . '」らしい。';
+$weather.= '最高気温は「' . $data->main->temp_max  . '」らしい。最低気温は「' . $data->main->temp_min  . '」らしい。';
+$weather .= '今の気温は「' . $data->main->temp  . '」らしい。';
 echo $weather;
 
 // ユーザ情報取得
