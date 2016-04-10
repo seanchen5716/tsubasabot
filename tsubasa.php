@@ -110,12 +110,7 @@ EOM;
         $text = "テキスト以外";
     }
     $weather = json_deocde(file_get_contents('http://weather.livedoor.com/forecast/webservice/json/v1?city=130010'));
-    if (strops($weather->forecasts[0]->telop, '雨') !== false) {
-      $content = <<< EOM
-              "contentType":1,
-              "text":"{$weather}"
-      EOM;
-}
+
 
 $content = <<< EOM
         "contentType":1,
