@@ -3,6 +3,7 @@ echo "start";
 error_log("NOW callback start.");
 
 require_once "weather_list.php";
+require_once "city_list.php";
 
 // アカウント情報設定
 $channel_id = "1462085693";
@@ -28,7 +29,7 @@ $message_id = $content->id;
 $content_type = $content->contentType;
 
 // 天気情報を取得
-$json_data = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Kanagawa&units=metric&APPID=3239915d4dc6061371ef340d59722e6f');
+$json_data = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Tokyo&units=metric&APPID=3239915d4dc6061371ef340d59722e6f');
 $data = json_decode($json_data);
 $weather_desc = $data->weather[0]->description;
 $weather_temp = $data->main->temp;
@@ -102,21 +103,21 @@ EOM;
 
 // 受信メッセージに応じて返すメッセージを変更
 $event_type = "138311608800106203";
-if ($text == "image") {
+if ($text == "画像") {
     $content = $image_content;
-} else if ($text == "video") {
+} else if ($text == "動画") {
     $content = $video_content;
-} else if ($text == "audio") {
+} else if ($text == "ボイス") {
     $content = $audio_content;
-} else if ($text == "location") {
+} else if ($text == "位置情報") {
     $content = $location_content;
 /*
-} else if ($text == "sticker") {
+} else if ($text == "スタンプ") {
     $content = $sticker_content;
 */
-} else if ($text == "rich") {
+} else if ($text == "リッチ画像") {
     $content = $rich_content;
-} else if ($text == "multi") {
+} else if ($text == "全部") {
     $event_type = "140177271400161403";
 $content = <<< EOM
     "messageNotified": 0,
