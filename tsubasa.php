@@ -26,14 +26,11 @@ $message_id = $content->id;
 $content_type = $content->contentType;
 
 // 天気情報を取得
-$base_url = "http://weather.livedoor.com/forecast/webservice/rest/v1?city=63&day=today";
-$weather_xml = simplexml_load_file($base_url);
-$weather = $weather_xml -> telop;
+$json_data = file_get_contents('http://api.openweathermap.org/data/2.5/weather?lat=33.593505&lon=130.400995');
+$data = json_decode($json_data);
 
-$data = "今日の天気は{$weather}だよ！";
-echo $data;
-
-
+$text .= '\r\n|なお天気は「' . $data->weather[0]->description  . '」らしいです。';
+echo $text;
 
 // ユーザ情報取得
 api_get_user_profile_request($from);
