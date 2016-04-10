@@ -30,7 +30,10 @@ $base_url = "http://weather.livedoor.com/forecast/webservice/json/v1?city=013010
 $json = file_get_contents($base_url);
 $json = mb_convert_encoding($json, 'UTF-8');
 $obj = json_decode($json, true);
-echo $obj;
+echo '<table border="1" cellspacing="0" cellpadding="5" style="width: 250px;"><tbody><tr><td colspan="3">';
+echo $obj['location']['city'] . 'の天気';
+echo '</td></tr><tr>';
+
 
 // ユーザ情報取得
 api_get_user_profile_request($from);
