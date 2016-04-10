@@ -2,6 +2,8 @@
 echo "start";
 error_log("NOW callback start.");
 
+require_once "weather_list.php";
+
 // アカウント情報設定
 $channel_id = "1462085693";
 $channel_secret = "bd98cbb48d7458d7cc3d464ecb924805";
@@ -32,6 +34,8 @@ $weather_desc = $data->weather[0]->description;
 $weather_temp = $data->main->temp;
 $weather_temp_max = $data->main->temp_max;
 $weather_temp_min = $data->main->temp_min;
+
+$weather_desc = $weather_desc_list["{$weather_desc}"];
 
 $weather_content = <<< EOM
       "contentType":1,
