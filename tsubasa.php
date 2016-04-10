@@ -109,7 +109,7 @@ EOM;
     if ($content_type != 1) {
         $text = "テキスト以外";
     }
-
+$weather = get_weather_on(130010);
 
 
 $content = <<< EOM
