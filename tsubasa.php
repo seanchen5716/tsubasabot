@@ -109,9 +109,6 @@ EOM;
     if ($content_type != 1) {
         $text = "テキスト以外";
     }
-$weather = get_weather_on(130010);
-echo "tenki".$weather;
-
 $content = <<< EOM
         "contentType":1,
         "text":"なになに、「{$text}」って、どういうことなの？"
@@ -138,7 +135,6 @@ function get_weather_on($city)
 {
  return json_deocde(file_get_contents(
   'http://weather.livedoor.com/forecast/webservice/json/v1?city='.$city));
-  echo "string";
 };
 
 function api_post_request($path, $post) {
