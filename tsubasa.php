@@ -29,10 +29,10 @@ $content_type = $content->contentType;
 $json_data = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Tokyo&units=metric&APPID=3239915d4dc6061371ef340d59722e6f');
 $data = json_decode($json_data);
 
-$text .= '東京の天気は「' . $data->weather[0]->description  . '」らしいよ。';
-$text .= '最高気温は「' . $data->main->temp_max  . '」らしいよ。最低気温は「' . $data->main->temp_min  . '」らしいよ。';
-$text .= '今の気温は「' . $data->main->temp  . '」らしいよ。';
-echo $text;
+$weather .= '東京の天気は「' . $data->weather[0]->description  . '」らしいよ。';
+$weather.= '最高気温は「' . $data->main->temp_max  . '」らしいよ。最低気温は「' . $data->main->temp_min  . '」らしいよ。';
+$weather .= '今の気温は「' . $data->main->temp  . '」らしいよ。';
+echo $weather;
 
 // ユーザ情報取得
 api_get_user_profile_request($from);
