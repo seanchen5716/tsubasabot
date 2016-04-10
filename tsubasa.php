@@ -138,6 +138,7 @@ function get_weather_on($city)
 {
  return json_deocde(file_get_contents(
   'http://weather.livedoor.com/forecast/webservice/json/v1?city='.$city));
+  echo "string";
 };
 
 function api_post_request($path, $post) {
