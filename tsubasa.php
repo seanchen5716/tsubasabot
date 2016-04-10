@@ -26,11 +26,12 @@ $message_id = $content->id;
 $content_type = $content->contentType;
 
 // 天気情報を取得
-$base_url = "http://weather.livedoor.com/forecast/webservice/json/v1?city=130010";
-$json = file_get_contents($base_url);
-$json = mb_convert_encoding($json, 'UTF-8');
-$obj = json_decode($json, true);
-echo  $obj['location']['telop'];
+$base_url = "http://weather.livedoor.com/forecast/webservice/json/v1?city=130010&day=today";
+$weather_xml = simplexml_load_file($base_url);
+$weather = $weather_xml -> telop;
+
+$data = "今日の天気は{$weather}だよ！";
+echo $data;
 
 
 
