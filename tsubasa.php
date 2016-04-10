@@ -26,7 +26,7 @@ $message_id = $content->id;
 $content_type = $content->contentType;
 
 // 天気情報を取得
-$base_url = "http://weather.livedoor.com/forecast/webservice/json/v1?city=130010&day=today";
+$base_url = "http://weather.livedoor.com/forecast/webservice/json/v1?city=130010&day=tomorrow";
 $weather_xml = simplexml_load_file($base_url);
 $weather = $weather_xml -> telop;
 
