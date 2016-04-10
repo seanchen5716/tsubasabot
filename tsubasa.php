@@ -104,20 +104,7 @@ $content = <<< EOM
         {{$location_content}},
         {{$rich_content}}
     ]
-EOM;/*
-}else if($text == "天気"){
-  $weather = get_weather_on(130010);
-if (strops($weather->forecasts[0]->telop, '雨') !== false) {
-  $content=<<< EOM
-    "contentType":1,
-    "text" ="【東京都】傘が必要です"
-    EOM;
-}else{
-  $content=<<< EOM
-    "contentType":1,
-    "text" ="【東京都】傘がないです"
-    EOM;
-}*/
+EOM;
 } else { // 上記以外はtext送信
     if ($content_type != 1) {
         $text = "テキスト以外";
@@ -143,12 +130,6 @@ api_post_request("/v1/events", $post);
 
 error_log("callback end.");
 echo "<br>clallback end";
-
-function get_weather_on($city)
-{
- return json_deocde(file_get_contents(
-  'http://weather.livedoor.com/forecast/webservice/json/v1?city='.$city));
-}
 
 function api_post_request($path, $post) {
     $url = "https://trialbot-api.line.me{$path}";
