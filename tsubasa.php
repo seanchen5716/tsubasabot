@@ -115,13 +115,12 @@ $content = <<< EOM
         {{$rich_content}}
     ]
 EOM;
+}else if($text == "天気"){
+  $content = $weather;
 } else { // 上記以外はtext送信
     if ($content_type != 1) {
         $text = "テキスト以外";
     }
-
-
-
 $content = <<< EOM
         "contentType":1,
         "text":"なになに、「{$text}」って、どういうことなの？"
