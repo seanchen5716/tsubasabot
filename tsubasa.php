@@ -108,10 +108,7 @@ EOM;
 }else if($text == "天気"){
   $weather = get_weather_on(130010);
     if (strops($weather->forecasts[0]->telop, '雨') !== false) {
-      $content = <<< EOM
-              "contentType":1,
-              "text":"なになに、「{$text}」って、どういうことなの？"
-      EOM;
+      
     }
 } else { // 上記以外はtext送信
     if ($content_type != 1) {
