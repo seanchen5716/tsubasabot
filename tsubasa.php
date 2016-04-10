@@ -25,6 +25,12 @@ $from = $content->from;
 $message_id = $content->id;
 $content_type = $content->contentType;
 
+$base_url = "http://weather.livedoor.com/forecast/webservice/json/v1?city=016010";
+$json = file_get_contents($base_url);
+$json = mb_convert_encoding($json, 'UTF-8');
+$obj = json_decode($json, true);
+
+
 // ユーザ情報取得
 api_get_user_profile_request($from);
 
