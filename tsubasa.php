@@ -28,6 +28,15 @@ $content_type = $content->contentType;
 // 天気情報を取得
 $json_data = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Tokyo&units=metric&APPID=3239915d4dc6061371ef340d59722e6f');
 $data = json_decode($json_data);
+$weather_desc = $data->weather[0]->description;
+$weather_temp = $data->main->temp;
+$weather_temp_max = $data->main->temp_max;
+$weather_temp_min = $data->main->temp_min;
+
+$weather_content = <<< EOM
+      "contentType":1,
+      "text":"東京の天気は「{$weather_desc}」らしいよ。今の気温は「{$weather_temp}」らしいよ。最高気温は「{$weather_temp_max}」らしいよ。最低気温は「{$weather_temp_min}」らしいよ。"
+EOM;
 
 $weather .= '東京の天気は「' . $data->weather[0]->description  . '」らしいよ。';
 $weather.= '最高気温は「' . $data->main->temp_max  . '」らしいよ。最低気温は「' . $data->main->temp_min  . '」らしいよ。';
@@ -116,7 +125,7 @@ $content = <<< EOM
     ]
 EOM;
 }else if($text == "天気"){
-  $content = $weather;
+  $content = $weather_content;
 } else { // 上記以外はtext送信
     if ($content_type != 1) {
         $text = "テキスト以外";
