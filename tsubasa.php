@@ -2,12 +2,6 @@
 echo "start";
 error_log("NOW callback start.");
 
-function get_weather_on($city)
-{
- return json_deocde(file_get_contents(
-  'http://weather.livedoor.com/forecast/webservice/json/v1?city='.$city));
-}
-
 // アカウント情報設定
 $channel_id = "1462085693";
 $channel_secret = "bd98cbb48d7458d7cc3d464ecb924805";
@@ -140,7 +134,11 @@ api_post_request("/v1/events", $post);
 error_log("callback end.");
 echo "<br>clallback end";
 
-
+function get_weather_on($city)
+{
+ return json_deocde(file_get_contents(
+  'http://weather.livedoor.com/forecast/webservice/json/v1?city='.$city));
+};
 
 function api_post_request($path, $post) {
     $url = "https://trialbot-api.line.me{$path}";
