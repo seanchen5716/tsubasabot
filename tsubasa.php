@@ -28,7 +28,7 @@ $message_id = $content->id;
 $content_type = $content->contentType;
 
 // 天気情報を取得
-$json_data = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Tokyo&units=metric&APPID=3239915d4dc6061371ef340d59722e6f');
+$json_data = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Kanagawa&units=metric&APPID=3239915d4dc6061371ef340d59722e6f');
 $data = json_decode($json_data);
 $weather_desc = $data->weather[0]->description;
 $weather_temp = $data->main->temp;
@@ -136,7 +136,7 @@ EOM;
     }
 $content = <<< EOM
         "contentType":1,
-        "text":"なになに、「{$text}」って、どういうことなの？"
+        "text":"ごめん、「{$text}」って、どういうことだ？"
 EOM;
 }
 $post = <<< EOM
