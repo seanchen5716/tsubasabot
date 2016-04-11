@@ -31,3 +31,5 @@ AI人工知能はまだ計画中。
 1.いつでも更新する可能性があるので、急にバグったりすることがある。
 2.完成させることを最優先事項なので、classなどの構造化は全くやってない。
 3.コードは非常に汚い。
+
+![image](https://github.com/seanchen5716/tsubasabot/blob/master/IMG_5739.PNG "image")
