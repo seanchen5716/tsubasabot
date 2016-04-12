@@ -104,6 +104,10 @@ $stock_error = <<< EOM
         "contentType":1,
         "text":"一致する銘柄は見つからなかった。"
 EOM;
+$stock_m = <<< EOM
+        "contentType":1,
+        "text":"{$m[1]}円"
+EOM;
 
 // 受信メッセージに応じて返すメッセージを変更
 $event_type = "138311608800106203";
@@ -151,10 +155,7 @@ curl_close($curl);
 
 // 株価抽出
 if (preg_match("/<td\sclass\=\"stoksPrice\"\>(\d+)\<\/td\>/", $stock_body, $m)) {
-  $content = <<< EOM
-          "contentType":1,
-          "text":"{$m[1]}円"
-  EOM;
+  $content = $stock_m;
 }
 }
 }else if($text == "天気"){
