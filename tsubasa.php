@@ -156,7 +156,7 @@ curl_close($curl);
 
 // 株価抽出
 if (preg_match("/<td\sclass\=\"stoksPrice\"\>(\d+)\<\/td\>/", $body, $m)) {
-  $price = $m[0];
+  $price = $m[1];
   $content = <<< EOM
           "contentType":1,
           "text":"{$price}円"
