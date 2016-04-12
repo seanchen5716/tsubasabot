@@ -156,7 +156,7 @@ curl_close($curl);
 
 // 株価抽出
 if (preg_match("/<td\sclass\=\"stoksPrice\"\>(\d+)\<\/td\>/", $body, $m)) {
-  $price = $m[1];
+  $price = $m[0];
   $content = $stock_m;
 }
 }
