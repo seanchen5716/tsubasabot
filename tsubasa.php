@@ -40,7 +40,7 @@ $weather_desc_jp = $weather_desc_list["{$weather_desc}"];
 
 $weather_content = <<< EOM
       "contentType":1,
-      "text":"東京の天気は「{$weather_desc_jp}」、今の気温は「{$weather_temp}度」、最高気温は「{$weather_temp_max}度」、最低気温は「{$weather_temp_min}度」だよ。"
+      "text":"東京の天気は「{$weather_desc}」、今の気温は「{$weather_temp}度」、最高気温は「{$weather_temp_max}度」、最低気温は「{$weather_temp_min}度」だよ。"
 EOM;
 
 $weather .= '東京の天気は「' . $weather_desc  . '」らしい。';
@@ -130,7 +130,35 @@ $content = <<< EOM
     ]
 EOM;
 }else if(preg_match("/^[0-9]{4}$/", $text)){
-  echo '数値';
+  $url = 'http://stocks.finance.yahoo.co.jp/stocks/detail/?code=' . $text;
+  $curl = curl_init($url);
+  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($curl, CURLOPT_POST, true);
+  curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($curl, CURLOPT_POSTFIELDS, $post);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  $res = curl_exec($curl);
+
+  $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+  if ($code != 200) {
+    $content = <<< EOM
+            "contentType":1,
+            "text":"一致する銘柄は見つからなかった。"
+    EOM;
+}else{
+  $info = curl_getinfo($curl);
+$stock_body = substr($res, $info["header_size"]);
+
+curl_close($curl);
+
+// 株価抽出
+if (preg_match("/<td\sclass\=\"stoksPrice\"\>(\d+)\<\/td\>/", $stock_body, $m)) {
+  $content = <<< EOM
+          "contentType":1,
+          "text":"{$m[1]}円"
+  EOM;
+}
+}
 }else if($text == "天気"){
   $content = $weather_content;
 } else { // 上記以外はtext送信
