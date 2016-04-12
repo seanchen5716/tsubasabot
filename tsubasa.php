@@ -137,8 +137,8 @@ EOM;
   $res = curl_exec($curl);
 
   $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-  /*if ($code != 200) {
-    $content = <<< EOM
+  if ($code != 200) {
+    ・＊$content = <<< EOM
             "contentType":1,
             "text":"一致する銘柄は見つからなかった。"
     EOM;
@@ -154,8 +154,8 @@ if (preg_match("/<td\sclass\=\"stoksPrice\"\>(\d+)\<\/td\>/", $stock_body, $m)) 
           "contentType":1,
           "text":"{$m[1]}円"
   EOM;
-}
 }*/
+}
 }else if($text == "天気"){
   $content = $weather_content;
 } else { // 上記以外はtext送信
