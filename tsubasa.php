@@ -138,7 +138,7 @@ EOM;
 
   $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
   if ($code != 200) {
-    ・＊$content = <<< EOM
+    /*$content = <<< EOM
             "contentType":1,
             "text":"一致する銘柄は見つからなかった。"
     EOM;
