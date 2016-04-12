@@ -104,10 +104,7 @@ $stock_error = <<< EOM
         "contentType":1,
         "text":"一致する銘柄は見つからなかった。"
 EOM;
-$stock_m = <<< EOM
-        "contentType":1,
-        "text":"200円"
-EOM;
+
 
 // 受信メッセージに応じて返すメッセージを変更
 $event_type = "138311608800106203";
@@ -180,6 +177,11 @@ $post = <<< EOM
         {$content}
     }
 }
+EOM;
+
+$stock_m = <<< EOM
+        "contentType":1,
+        "text":"{$price}円"
 EOM;
 
 api_post_request("/v1/events", $post);
