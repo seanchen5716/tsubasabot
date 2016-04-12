@@ -129,7 +129,7 @@ $content = <<< EOM
         {{$rich_content}}
     ]
 EOM;
-}else if(!preg_match("/[a-zA-Z0-9]{4,16}/", $text){
+//}else if(!preg_match("/[a-zA-Z0-9]{4,16}/", $text){
 
 }else if($text == "天気"){
   $content = $weather_content;
