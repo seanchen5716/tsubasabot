@@ -104,7 +104,10 @@ $stock_error = <<< EOM
         "contentType":1,
         "text":"一致する銘柄は見つからなかった。"
 EOM;
-
+$stock_m = <<< EOM
+        "contentType":1,
+        "text":"{$price}円"
+EOM;
 
 // 受信メッセージに応じて返すメッセージを変更
 $event_type = "138311608800106203";
@@ -144,15 +147,16 @@ EOM;
   $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
   if ($code != 200) {
     $content = $stock_error;
+    curl_close($curl);
 }else{
  $info = curl_getinfo($curl);
-$stock_body = substr($res, $info["header_size"]);
+$body = substr($res, $info["header_size"]);
 
 curl_close($curl);
 
 // 株価抽出
-if (preg_match("/<td\sclass\=\"stoksPrice\"\>(\d+)\<\/td\>/", $stock_body, $m)) {
-  $price=$m[1];
+if (preg_match("/<td\sclass\=\"stoksPrice\"\>(\d+)\<\/td\>/", $body, $m)) {
+  $price = $m[1];
   $content = $stock_m;
 }
 }
@@ -168,10 +172,7 @@ $content = <<< EOM
 EOM;
 }
 
-$stock_m = <<< EOM
-        "contentType":1,
-        "text":"{$price}円"
-EOM;
+
 $post = <<< EOM
 {
     "to":["{$from}"],
