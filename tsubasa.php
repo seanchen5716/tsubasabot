@@ -106,7 +106,7 @@ $stock_error = <<< EOM
 EOM;
 $stock_m = <<< EOM
         "contentType":1,
-        "text":"{$price}円"
+        "text":"200円"
 EOM;
 
 // 受信メッセージに応じて返すメッセージを変更
@@ -156,13 +156,7 @@ curl_close($curl);
 // 株価抽出
 if (preg_match("/<td\sclass\=\"stoksPrice\"\>(\d+)\<\/td\>/", $stock_body, $m)) {
   $price=$m[1];
-  if ($content_type != 1) {
-      $text = "株以外";
-  }
-  $content = = <<< EOM
-          "contentType":1,
-          "text":"{$price}円"
-  EOM;
+  $content = $stock_m;
 }
 }
 }else if($text == "天気"){
