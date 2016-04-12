@@ -16,7 +16,7 @@ $preview_image_url_for_image = "https://tsubasabot.azurewebsites.net/5248.jpg";
 $original_content_url_for_video = "[https://www.youtube.com/watch?v=R1gOcj_rFcU]";
 $preview_image_url_for_video = "[https://yt3.ggpht.com/-u1m1s3j34kw/AAAAAAAAAAI/AAAAAAAAAAA/kxxnX3pl5Ig/s88-c-k-no-rj-c0xffffff/photo.jpg]";
 $original_content_url_for_audio = "[音声URL]";
-$download_url_for_rich = "[リッチ画像URL]";
+$download_url_for_rich = "https://tsubasabot.azurewebsites.net/5248.jpg";
 //$weather = json_deocde(file_get_contents('http://weather.livedoor.com/forecast/webservice/json/v1?city=130010'));
 
 // メッセージ受信
@@ -36,14 +36,14 @@ $weather_temp = $data->main->temp;
 $weather_temp_max = $data->main->temp_max;
 $weather_temp_min = $data->main->temp_min;
 
-$weather_desc = $weather_desc_list["{$weather_desc}"];
+$weather_desc_jp = $weather_desc_list["{$weather_desc}"];
 
 $weather_content = <<< EOM
       "contentType":1,
       "text":"東京の天気は「{$weather_desc}」、今の気温は「{$weather_temp}度」、最高気温は「{$weather_temp_max}度」、最低気温は「{$weather_temp_min}度」だよ。"
 EOM;
 
-$weather .= '東京の天気は「' . $weather_desc  . '」らしい。';
+$weather .= '東京の天気は「' . $weather_desc_jp  . '」らしい。';
 $weather.= '最高気温は「' . $data->main->temp_max  . '」らしい。最低気温は「' . $data->main->temp_min  . '」らしい。';
 $weather .= '今の気温は「' . $data->main->temp  . '」らしい。';
 echo $weather;
@@ -129,6 +129,8 @@ $content = <<< EOM
         {{$rich_content}}
     ]
 EOM;
+}else if(!preg_match("/[a-zA-Z0-9]{4,16}/", $text){
+
 }else if($text == "天気"){
   $content = $weather_content;
 } else { // 上記以外はtext送信
