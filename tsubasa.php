@@ -157,10 +157,10 @@ curl_close($curl);
 // 株価抽出
 if (preg_match("/<td\sclass\=\"stoksPrice\"\>(\d+)\<\/td\>/", $body, $m)) {
   $price = $m[0];
-  $content = = <<< EOM
+  $content = = <<< EOS
           "contentType":1,
           "text":"{$price}円"
-EOM;
+EOS;
 }
 }
 }else if($text == "天気"){
