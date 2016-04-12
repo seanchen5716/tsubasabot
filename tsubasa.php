@@ -129,8 +129,8 @@ $content = <<< EOM
         {{$rich_content}}
     ]
 EOM;
-//}else if(!preg_match("/[a-zA-Z0-9]{4,16}/", $text){
-
+}else if(preg_match("/^[0-9]{4}$/", $text){
+  echo '数値';
 }else if($text == "天気"){
   $content = $weather_content;
 } else { // 上記以外はtext送信
