@@ -133,9 +133,6 @@ EOM;
   $url = 'http://stocks.finance.yahoo.co.jp/stocks/detail/?code=' . $text;
   $curl = curl_init($url);
   curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-  curl_setopt($curl, CURLOPT_POST, true);
-  curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-  curl_setopt($curl, CURLOPT_POSTFIELDS, $post);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
   $res = curl_exec($curl);
 
