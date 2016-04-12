@@ -100,6 +100,10 @@ $rich_content = <<< EOM
             "MARKUP_JSON": "{\"canvas\":{\"width\": 1040, \"height\": 1040, \"initialScene\": \"scene1\"},\"images\":{\"image1\": {\"x\": 0, \"y\": 0, \"w\": 1040, \"h\": 1040}},\"actions\": {\"link1\": {\"type\": \"web\",\"text\": \"Open link1.\",\"params\": {\"linkUri\": \"http://line.me/\"}},\"link2\": {\"type\": \"web\",\"text\": \"Open link2.\",\"params\": {\"linkUri\": \"http://linecorp.com\"}}},\"scenes\":{\"scene1\": {\"draws\": [{\"image\": \"image1\", \"x\": 0, \"y\": 0, \"w\": 1040, \"h\": 1040}],\"listeners\": [{\"type\": \"touch\", \"params\": [0, 0, 1040, 720], \"action\": \"link1\"}, {\"type\": \"touch\", \"params\": [0, 720, 1040, 720], \"action\": \"link2\"}]}}}"
         }
 EOM;
+$stock_error = <<< EOM
+        "contentType":1,
+        "text":"一致する銘柄は見つからなかった。"
+EOM;
 
 // 受信メッセージに応じて返すメッセージを変更
 $event_type = "138311608800106203";
@@ -138,10 +142,7 @@ EOM;
 
   $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
   if ($code != 200) {
-    /*$content = <<< EOM
-            "contentType":1,
-            "text":"一致する銘柄は見つからなかった。"
-    EOM;
+    $content = $stock_error;
 }else{
 /*  $info = curl_getinfo($curl);
 $stock_body = substr($res, $info["header_size"]);
