@@ -106,7 +106,7 @@ $stock_error = <<< EOM
 EOM;
 $stock_m = <<< EOM
         "contentType":1,
-        "text":"{$m[1]}円"
+        "text":"{$price}円"
 EOM;
 
 // 受信メッセージに応じて返すメッセージを変更
@@ -138,11 +138,7 @@ $content = <<< EOM
     ]
 EOM;
 }else if(preg_match("/^[0-9]{4}$/", $text)){
-  $url = 'http://stocks.finance.yahoo.co.jp/stocks/detail/?code=6946';
-  $curl = curl_init($url);
-  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-  $res = curl_exec($curl);
+  stock_post_request($text);
 
   $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
   if ($code != 200) {
@@ -155,6 +151,7 @@ curl_close($curl);
 
 // 株価抽出
 if (preg_match("/<td\sclass\=\"stoksPrice\"\>(\d+)\<\/td\>/", $stock_body, $m)) {
+  $price=$m[1];
   $content = $stock_m;
 }
 }
@@ -187,6 +184,14 @@ error_log("callback end.");
 echo "<br>clallback end";
 json_deocde(file_get_contents(
  'http://weather.livedoor.com/forecast/webservice/json/v1?city='.$city));
+
+function stock_post_request($stock_brand){
+  $url = 'http://stocks.finance.yahoo.co.jp/stocks/detail/?code=' . $stock_brand;
+  $curl = curl_init($url);
+  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  $res = curl_exec($curl);
+}
 
 function api_post_request($path, $post) {
     $url = "https://trialbot-api.line.me{$path}";
