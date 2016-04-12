@@ -143,7 +143,7 @@ EOM;
             "text":"一致する銘柄は見つからなかった。"
     EOM;
 }else{
-  $info = curl_getinfo($curl);
+/*  $info = curl_getinfo($curl);
 $stock_body = substr($res, $info["header_size"]);
 
 curl_close($curl);
@@ -154,7 +154,7 @@ if (preg_match("/<td\sclass\=\"stoksPrice\"\>(\d+)\<\/td\>/", $stock_body, $m)) 
           "contentType":1,
           "text":"{$m[1]}円"
   EOM;
-}
+}*/
 }
 }else if($text == "天気"){
   $content = $weather_content;
