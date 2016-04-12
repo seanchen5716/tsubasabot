@@ -70,6 +70,7 @@ $weather_desc_list = array(
   'gale' => '大嵐(風力8)',
   'severe gale' => '猛烈な風(風力9-10)',
   'storm' => '暴風(風力11)',
-  'violent storm' => '激しい嵐(風力11)', 
+  'violent storm' => '激しい嵐(風力11)',
+  'broken clouds' => '千切れ雲',
 );
  ?>
