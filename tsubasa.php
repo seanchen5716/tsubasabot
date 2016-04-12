@@ -131,13 +131,13 @@ $content = <<< EOM
 EOM;
 }else if(preg_match("/^[0-9]{4}$/", $text)){
   $url = 'http://stocks.finance.yahoo.co.jp/stocks/detail/?code=' . $text;
-  $curl = curl_init($url);
+  /*i$curl = curl_init($url);
   curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
   $res = curl_exec($curl);
 
   $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-  /*if ($code != 200) {
+  f ($code != 200) {
     $content = <<< EOM
             "contentType":1,
             "text":"一致する銘柄は見つからなかった。"
