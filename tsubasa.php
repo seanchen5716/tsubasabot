@@ -167,6 +167,11 @@ $content = <<< EOM
         "text":"ごめん、「{$text}」って、どういうことだ？"
 EOM;
 }
+
+$stock_m = <<< EOM
+        "contentType":1,
+        "text":"{$price}円"
+EOM;
 $post = <<< EOM
 {
     "to":["{$from}"],
@@ -179,10 +184,7 @@ $post = <<< EOM
 }
 EOM;
 
-$stock_m = <<< EOM
-        "contentType":1,
-        "text":"{$price}円"
-EOM;
+
 
 api_post_request("/v1/events", $post);
 
