@@ -138,7 +138,7 @@ $content = <<< EOM
     ]
 EOM;
 }else if(preg_match("/^[0-9]{4}$/", $text)){
-  $url = 'http://stocks.finance.yahoo.co.jp/stocks/detail/?code=' . $text;
+  $url = 'http://stocks.finance.yahoo.co.jp/stocks/detail/?code=6946';
   $curl = curl_init($url);
   curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
