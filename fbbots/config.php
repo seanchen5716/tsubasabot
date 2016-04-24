@@ -1,4 +1,4 @@
 <?php
 return array(
-	'page_access_token' => '{YOUR PAGE ACCESS TOKEN HERE}'
+	'page_access_token' => 'EAADKYgGKeJIBALCRNJbgq47XXoZAZAvfHOIMsqhuoB9le72iUyzZCWMQRYYr13A6bqAa5qdSbee12D63L7G6COLp7SUP1LU5nLZB6yG7ZCObSfpyyr1g4YRCHuB7MWXRLRAcFIR6tjHAnwKhEzQE3HQZBiqb0pZCKhiam9wZBoQLNwZDZD'
 );
