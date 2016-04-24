@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>Facebook Messenger Bots Documentation</title>
+    <style type="text/css">
+        body {
+            font: 13px Verdana, Arial, Helvetica, sans-serif
+        }
+
+        strong {
+            font-weight: bold
+        }
+
+        h1, h2, h3, h4, h5 {
+            font: bold 36px Georgia, "Times New Roman", Times, serif;
+            padding-bottom: 0.5em;
+            margin: 2em 0 1em
+        }
+
+        h2 {
+            font-size: 26px
+        }
+
+        h3 {
+            font-size: 22px
+        }
+
+        h4 {
+            font-size: 19px
+        }
+
+        h5 {
+            font-size: 16px;
+            font-weight: normal
+        }
+
+        p {
+            margin-bottom: 1em;
+            line-height: 1.5em;
+            text-align: justify
+        }
+
+        ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin: 1em 0
+        }
+
+        ol {
+            list-style: decimal;
+            padding-left: 20px
+        }
+
+        code {
+            background: #eee
+        }
+
+        .container {
+            width: 960px;
+            margin: 30px auto
+        }
+
+        header, section, footer {
+            display: block
+        }
+
+        header h1 {
+            text-align: center
+        }
+
+        nav ul {
+            overflow: hidden;
+            margin-bottom: 20px;
+            padding-left: 0
+        }
+
+        nav li {
+            list-style: none;
+            float: left;
+            border-left: 1px solid #ccc;
+            padding: 0 10px
+        }
+
+        nav li:first-child {
+            border-left: none;
+            padding-left: 0
+        }
+
+        #info strong {
+            width: 120px;
+            display: inline-block
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        footer {
+            margin: 15px auto;
+            color: #999;
+            font-size: 11px
+        }
+
+    </style>
+</head>
+
+
+<body>
+<div class="container">
+
+    <h1 class="center">Facebok Messenger Bots Documentation</h1>
+
+    <div class="borderTop">
+        <div class="span-6 colborder info prepend-1">
+            <p class="prepend-top">
+                <strong>
+                    By: Binaty<br>
+                    Email: <a href="mailto:hello@binaty.org">hello@binaty.org</a>
+                </strong>
+            </p>
+        </div><!-- end div .span-6 -->
+
+        <div class="span-12 last">
+            <p class="prepend-top append-0">Thank you for purchasing our library. If you have any questions that are
+                beyond the scope of this help file, please feel free to email via our user page contact form <a
+                        href="http://codecanyon/user/binaty">here</a>. <br>
+                Thanks so much!</p>
+        </div>
+    </div><!-- end div .borderTop -->
+
+    <hr>
+
+    <h2 id="toc" class="alt">Table of Contents</h2>
+    <ol>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#configurations">Configurations</a>
+            <ul>
+                <li><a href="#response_user">Response to user</a>
+                    <ul>
+                        <li><a href="#response_text">Response a message</a></li>
+                        <li><a href="#response_postback">Response postback payload</a></li>
+                        <li><a href="#default_action">Default actions</a></li>
+                    </ul>
+                </li>
+                <li><a href="#action_templates">Action templates</a>
+                    <ul>
+                        <li><a href="#text">Text</a></li>
+                        <li><a href="#image">Image</a></li>
+                        <li><a href="#buttons">Buttons</a></li>
+                        <li><a href="#generic">Generic</a></li>
+                        <li><a href="#receipt">Receipt</a></li>
+                    </ul>
+                </li>
+                <li><a href="#get_infomation">Get infomation</a></li>
+            </ul>
+        </li>
+        <li><a href="#uninstallation">Uninstallation</a></li>
+    </ol>
+
+    <hr>
+
+
+    <h3 id="installation"><strong>1. Installation</strong> - <a href="#toc">top</a></h3>
+
+    <h4>Site Requirements</h4>
+
+    <ul>
+        <li>PHP 5.3+</li>
+        <li>PHP allow_url_fopen must be On</li>
+        <li>Your site must be HTTPS</li>
+    </ul>
+
+    <h4>Preinstall</h4>
+    <ul>
+        <li><a href="https://business.facebook.com/">Upgrade your Facebook account to Business.</a></li>
+        <li>Create a new <a href="https://developers.facebook.com/quickstarts/?platform=web">Facebook App</a> and
+            <a href="https://www.facebook.com/pages/create">Page</a> or use existing one.
+            <br>
+            <em>(Your App can remain in sandbox mode and your Page does not have to publicly visible. The Page profile
+                pic and name will be used to form the "identity" of your bot and is what people will see when they
+                engage it.)</em>
+        </li>
+        <li>Your App API version must be v2.6+</li>
+    </ul>
+
+
+    <h4>Installation</h4>
+    <ol>
+        <li>Download <code>facebook-messenger-bot.zip</code> and unzip the package</li>
+        <li>Upload <code>facebook-messenger-bot</code> folder to your hosting.
+            <br>
+            <em>(You can rename this folder if you want)</em>
+        </li>
+        <li>Go to your App Webhooks page and make a new Page subscription
+            <img src="https://ntvinh.com/fb/documentation/webhooks.png" alt="Go to App Webhooks pages">
+        </li>
+        <li>At your New Page Subscription dialog. Add Callback URL to your desired URL (<em>As we renamed it to <code>/fb</code> in the example</em>) and <code>FacebookMessengerBots</code> to Verify Token field.
+            <br>
+            Select <code>messages</code>, <code>message_deliveries</code>, <code>messaging_optins</code>
+            and <code>messaging_postbacks</code> fields then click <strong><code>Verify and Save</code></strong>
+            <img src="https://ntvinh.com/fb/documentation/webhooks_page_subscription.png" alt="Page Subscription dialog">
+        </li>
+        <li>
+            After verification step, if the dialog closes and your webhooks page looks like the screen shot below
+            <br>
+            <img src="https://ntvinh.com/fb/documentation/webhooks_page_subscription_success.png" alt="Page subscription successfully">
+        </li>
+        <li>
+            Go to your app's Messenger menu (under Webhooks). Create a new Page Access token and copy and replace <code>{YOUR PAGE ACCESS TOKEN HERE}</code> in <code>config.php</code>
+            <br>
+            <img src="https://ntvinh.com/fb/documentation/messenger.png" alt="Get page access token">
+        </li>
+        <li>
+            Let's make a request to Facebook to subscribe the app to the page by going to
+            <code>https://yourdomain/your_facebook_bot_directory/subscribe.php</code>
+        </li>
+        <li>
+            If the screen shown as the screen shot below, you have successfully installed Facebook messenger bot :).
+            <br>
+            <img src="https://ntvinh.com/fb/documentation/subscribe.png" alt="Install successfully">
+        </li>
+        <li>
+            To start building bots, just edit file <code>index.php</code>. We have added some examples there.
+        </li>
+    </ol>
+
+    <hr>
+
+    <h3 id="configurations"><strong>2. Configuration</strong> - <a href="#toc">top</a></h3>
+
+    <h4 id="response_user">Response to user</h4>
+
+    <h5 id="response_text">When user send a message</h5>
+
+    <p>To response to user when they send a message to your bots, simply use the snippet below</p>
+
+<pre>
+$bot->add( 'text', array(
+    '{USER_MESSAGE}' => array(
+        array( //Actions
+            'type'    => '{RESPONSE_TYPE}',
+            'content' => '{RESPONSE_CONTENT}'
+        ),
+        ...
+    ),
+    ...
+) );
+</pre>
+    <p><em>You can add up to three actions per message</em></p>
+
+    <h6>Example</h6>
+    <p>When user send <code>help</code>, response a text block and some buttons</p>
+<pre>
+$bot->add( 'text', array(
+	'help' => array(
+		array(
+			'type'    => 'text',
+			'content' => 'This script is added by add(\'text\', $script) function.'
+		),
+		array(
+			'type'    => 'button',
+			'content' => array(
+				'text'    => 'You can See documentation to get more detail',
+				'buttons' => array(
+					array(
+						'type'  => 'web_url',
+						'url'   => 'https://ntvinh.com/fb/documentation.html',
+						'title' => 'See documentation'
+					),
+                    array(
+						'type' => 'postback',
+						'payload' => 'GoShopping',
+						'title' => 'Go shopping'
+					),
+					array(
+						'type'    => 'postback',
+						'payload' => 'WatchTrailer',
+						'title'   => 'Watch Trailers'
+					)
+				)
+			)
+		)
+	)
+) );
+</pre>
+    <img src="https://ntvinh.com/fb/documentation/response_text.png" alt="Response to user message">
+
+    <h5 id="response_postback">When user clicks a button (Postback payload)</h5>
+
+    <p>When user clicks a button with postback payload, you can response to user by using this snippet</p>
+<pre>
+$bot->add( 'payload', array(
+	'{POSTBACK_PAYLOAD_NAME}' => array(
+        //Actions
+		array(
+			'type'    => '{RESPONSE_TYPE}',
+			'content' => '{RESPONSE_CONTENT}'
+		),
+        ...
+	),
+    ...
+) );
+</pre>
+
+    <h6>Example</h6>
+    <p>When user clicks <code>Go Shopping</code> button in above example, this button postback payload is <code>GoShopping</code>, so response a textblock and some products</p>
+<pre>
+$bot->add( 'payload', array(
+	'GoShopping' => array(
+        array(
+            'type'    => 'text',
+            'content' => 'Click add to cart to get receipt'
+        ),
+        array(
+            'type'    => 'generic',
+            'content' => array(
+                array(
+                    "title"     => "Classic White T-Shirt",
+                    "image_url" => "http://petersapparel.parseapp.com/img/item100-thumb.png",
+                    "subtitle"  => "Soft white cotton t-shirt is back in style",
+                    "buttons"   => array(
+                        array(
+                            "type"  => "web_url",
+                            "url"   => "https://ntvinh.com",
+                            "title" => "Show website"
+                        ),
+                        array(
+                            "type"    => "postback",
+                            "payload" => "AddToCart",
+                            "title"   => "Add to cart"
+                        )
+                    )
+                ),
+                array(
+                    "title"     => "Classic White T-Shirt",
+                    "image_url" => "http://petersapparel.parseapp.com/img/item100-thumb.png",
+                    "subtitle"  => "Soft white cotton t-shirt is back in style",
+                    "buttons"   => array(
+                        array(
+                            "type"  => "web_url",
+                            "url"   => "https://ntvinh.com",
+                            "title" => "Show website"
+                        ),
+                        array(
+                            "type"    => "postback",
+                            "payload" => "AddToCart",
+                            "title"   => "Add to cart"
+                        )
+                    )
+                ),
+            )
+        ),
+    ),
+) );
+</pre>
+    <img src="https://ntvinh.com/fb/documentation/response_payload.png" alt="Response Payload">
+
+    <hr>
+
+    <h5 id="default_action">Add default action</h5> - <a href="#toc">Top</a>
+    <p>If user send a message or postback payload that you haven't added, you need to response to user something like instruction, or some buttons for them</p>
+    <p>To add default action, simply use these code: </p>
+
+<pre>
+$bot->add( 'default', array(
+    //Actions
+    array(
+        'type'    => 'text',
+        'content' => "You can type 'help', 'Show text', 'Show buttons', 'Show image', 'Show generic', 'Show image and buttons' to see our example function with text"
+    ),
+	array(
+		'type'    => 'button',
+		'content' => array(
+			'text'    => 'Or you can click one from these button to see example action with payload or web url',
+			'buttons' => array(
+				array(
+					'title' => 'Visit website',
+					'type'  => 'web_url',
+					'url'   => 'https://ntvinh.com'
+				),
+				array(
+					'title'   => 'Go Shopping',
+					'type'    => 'postback',
+					'payload' => 'GoShopping'
+				)
+			)
+		)
+	)
+) );
+</pre>
+
+    <img src="https://ntvinh.com/fb/documentation/response_default.png" alt="Response default actions">
+
+
+    <h4 id="action_templates">Action templates</h4>
+    <p>We have 5 types of template to response to user: <a href="#text">Text</a>, <a href="#image">Image</a>, <a
+            href="#buttons">Buttons</a>, <a href="#generic">Generic</a>, <a href="#receipt">Receipt</a> </p>
+
+    <h5 id="text">Text block</h5>
+
+<pre>
+array(
+    'type' => 'text',
+    'content' => '{RESPONSE TEXT}'
+)
+</pre>
+    <h6>Example</h6>
+    <p>Send 'Hello World!' to user when they text 'Say hello'</p>
+<pre>
+$bot->add('text', array(
+    'Say hello' => array(
+        array(
+            'type' => 'text',
+            'content' => 'Hello world!'
+        )
+    ),
+));
+</pre>
+    <img src="https://ntvinh.com/fb/documentation/text_template.png" alt="Text template">
+
+    <h5 id="image">Image template</h5>
+    <p>To send an image to user, everything you need is an image url</p>
+<pre>
+array(
+    'type' => 'image',
+    'content' => '{IMAGE_URL}'
+)
+</pre>
+
+    <h6>Example</h6>
+    <p>User text 'Show me the cat', response cat image</p>
+<pre>
+$bot->add('text', array(
+    'Show me the cat'        => array(
+        array(
+            'type'    => 'image',
+            'content' => 'http://petsubjectsrescue.petethevet.com/wp-content/uploads/2014/01/cat.png'
+        ),
+    )
+));
+</pre>
+    <img src="https://ntvinh.com/fb/documentation/image_template.png" alt="Image template">
+
+    <h5 id="buttons">Button template</h5>
+    <p>We have two types of button: Web URL and Postback.</p>
+    <p>When user clicks Web URL button, they will jump to a web page with the url which you defined</p>
+    <p>But when user clicks Postback button, the app will response some actions that you defined. See <a href="#response_postback">Response postback payload</a></p>
+<pre>
+array(
+    'text' => {INSTRUCTION_TEXT},
+    'buttons' => array(
+        //List button
+        array(
+            'type' => '{web_url | postback}',
+            'url' => '{WEB_URL}', //When type = web_url
+            'payload' => '{PAYLOAD_NAME}', //When type = postback
+            'title' => '{BUTTON TITLE}'
+        ),
+        ...
+    )
+)
+</pre>
+
+    <h6>Example</h6>
+    <p>When user sends 'Show buttons' text, response some buttons with instruction</p>
+<pre>
+$bot->add('text', array(
+    'Show buttons' => array(
+        array(
+            'type'    => 'button',
+            'content' => array(
+                'text'    => 'Choose one from these button',
+                'buttons' => array(
+                    array(
+                        'type'  => 'web_url',
+                        'url'   => 'https://ntvinh.com',
+                        'title' => 'Show website'
+                    ),
+                    array(
+                        'type'    => 'postback',
+                        'payload' => 'GoShopping',
+                        'title'   => 'Go Shopping'
+                    )
+                )
+            )
+        ),
+    )
+));
+</pre>
+    <img src="https://ntvinh.com/fb/documentation/buttons_template.png" alt="Buttons template">
+
+    <h5 id="generic">Generic Template</h5> - <a href="#toc">Top</a>
+    <p>Generic template is something like list of products, articles,... show as a carousel.</p>
+<pre>
+array(
+    'type'    => 'generic',
+    'content' => array(
+        array(
+            "title"     => "{TITLE}",
+            "image_url" => "{IMAGE_URL}",
+            "subtitle"  => "{SUBTITLE}",
+            "buttons"   => {ARRAY -> LIST OF BUTTON, as defined in #buttons}
+        ),
+        ...
+    )
+),
+</pre>
+
+    <h6>Example</h6>
+    <p>When user text 'Show generic', show them some products</p>
+<pre>
+$bot->add('text', array(
+    'Show generic' => array(
+        array(
+            'type'    => 'generic',
+            'content' => array(
+                array(
+                    "title"     => "Classic White T-Shirt",
+                    "image_url" => "http://petersapparel.parseapp.com/img/item100-thumb.png",
+                    "subtitle"  => "Soft white cotton t-shirt is back in style",
+                    "buttons"   => array(
+                        array(
+                            "type"  => "web_url",
+                            "url"   => "https://ntvinh.com",
+                            "title" => "Show website"
+                        ),
+                        array(
+                            "type"    => "postback",
+                            "payload" => "AddToCart",
+                            "title"   => "Add to cart"
+                        )
+                    )
+                ),
+                array(
+                    "title"     => "Classic White T-Shirt",
+                    "image_url" => "http://petersapparel.parseapp.com/img/item100-thumb.png",
+                    "subtitle"  => "Soft white cotton t-shirt is back in style",
+                    "buttons"   => array(
+                        array(
+                            "type"  => "web_url",
+                            "url"   => "https://ntvinh.com",
+                            "title" => "Show website"
+                        ),
+                        array(
+                            "type"    => "postback",
+                            "payload" => "AddToCart",
+                            "title"   => "Add to cart"
+                        )
+                    )
+                ),
+            )
+        )
+));
+</pre>
+    <img src="https://ntvinh.com/fb/documentation/generic_template.png" alt="Generic template">
+
+    <h5 id="receipt">Receipt Template</h5> - <a href="#toc">Top</a>
+    <p>Remember that for each order number, you just can send it to user one time only.</p>
+
+<pre>
+array(
+    'type'    => 'receipt',
+    'content' => array(
+        'name'           => '{CUSTOMER_NAME}',
+        'order_number'   => {ORDER_NUMBER},
+        'currency'       => '{CURRENCY}',
+        'payment_method' => '{PAYMENT_METHOD}',
+        'order_url'      => '{ORDER_URL}',
+        'elements'       => array(
+            array(
+                "title"     => "{PRODUCT_NAME}",
+                "subtitle"  => "{PRODUCT_SUBTITLE}",
+                "quantity"  => {PRODUCT_QUANTITY},
+                "price"     => {PRODUCT_PRICE},
+                "currency"  => "{PRODUCT_CURRENCY}",
+                "image_url" => "{PRODUCT_IMAGE}"
+            ),
+            ...
+        ),
+        'address'        => array(
+            "street_1"    => "{STREET 1 ADDRESS}",
+            "street_2"    => "{STREET 2 ADDRESS}",
+            "city"        => "{CITY}",
+            "postal_code" => "{POSTAL_CODE}",
+            "state"       => "{STATE}",
+            "country"     => "{COUNTRY}"
+        ),
+        'summary'        => array(
+            "subtotal"      => {SUBTOTAL},
+            "shipping_cost" => {SHIPPING_COST},
+            "total_tax"     => {TOTAL_TAX},
+            "total_cost"    => {TOTAL_COST}
+        ),
+        'adjustments'    => array(
+            array(
+                "name"   => "{ADJUSTMENT_NAME}",
+                "amount" => {AMOUNT}
+            ),
+            ...
+        )
+    )
+)
+</pre>
+    <h6>Example</h6>
+    <p>When user clicks to Add to cart button (with <code>AddToCart</code> postback payload), show the receipt</p>
+<pre>
+$bot->add('payload', array(
+    'AddToCart' => array(
+        array(
+            'type'    => 'receipt',
+            'content' => array(
+                'name'           => 'Mr Jone Doe',
+                'order_number'   => rand( 0, 99999999999 ),
+                'currency'       => 'USD',
+                'payment_method' => 'Visa',
+                'order_url'      => 'https://ntvinh.com/',
+                'elements'       => array(
+                    array(
+                        "title"     => "Classic White T-Shirt",
+                        "subtitle"  => "100% soft and luxurious cotton",
+                        "quantity"  => 2,
+                        "price"     => 50,
+                        "currency"  => "USD",
+                        "image_url" => "http://petersapparel.parseapp.com/img/whiteshirt.png"
+                    ),
+                    array(
+                        "title"     => "Classic Gray T-Shirt",
+                        "subtitle"  => "99% soft and luxurious cotton",
+                        "quantity"  => 2,
+                        "price"     => 100,
+                        "currency"  => "VND",
+                        "image_url" => "http://petersapparel.parseapp.com/img/grayshirt.png"
+                    )
+                ),
+                'address'        => array(
+                    "street_1"    => "1st Tran Hung Dao, Ba Dinh, Ha Noi",
+                    "street_2"    => "2nd Le Van Luong, Ha Noi",
+                    "city"        => "Hanoi",
+                    "postal_code" => "100000",
+                    "state"       => "HN",
+                    "country"     => "VN"
+                ),
+                'summary'        => array(
+                    "subtotal"      => 150.00,
+                    "shipping_cost" => 20.00,
+                    "total_tax"     => 10.00,
+                    "total_cost"    => 120.00
+                ),
+                'adjustments'    => array(
+                    array(
+                        "name"   => "New customer discount",
+                        "amount" => 20
+                    ),
+                    array(
+                        "name"   => "10% off coupon code",
+                        "amount" => 10
+                    )
+                )
+            )
+        )
+    )
+));
+</pre>
+    <img src="https://ntvinh.com/fb/documentation/receipt_template.png" alt="Receipt template">
+    <img src="https://ntvinh.com/fb/documentation/receipt_detail_template.png" alt="Receipt detail">
+
+    <h4 id="get_infomation">Get information</h4>
+    <h5>Get User ID</h5>
+    <p>To get user ID, use this code: </p>
+<pre>
+$bot->get_userid();
+</pre>
+    <p><em>User ID in Facebook Messenger is App Scoped, you can use this ID just in your app</em></p>
+
+    <h5>Get send time</h5>
+    <p>To get user send time, use this code: </p>
+<pre>
+$bot->get_time();
+</pre>
+
+    <h5>Get message ID</h5>
+    <p>Each message has an uniqe ID, you can get this ID by this code</p>
+<pre>
+$bot->getID();
+</pre>
+
+    <hr>
+    <h3 id="uninstallation"><strong>4. Uninstallation</strong> - <a href="#toc">top</a></h3>
+
+    <p>Before uninstall, make sure you've backed up all your code.</p>
+    <p>Simple delete uploaded folder, or move it to anywhere else.</p>
+
+</div><!-- end div .container -->
+</body>
+</html>
